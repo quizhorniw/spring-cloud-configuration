@@ -15,9 +15,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/quizhorniw/online-store-config-server
+          uri: https://github.com/quizhorniw/spring-cloud-configuration
 ```
 or similarly using `application.properties`:
 ```
-spring.cloud.config.server.git.uri=https://github.com/quizhorniw/online-store-config-server
+spring.cloud.config.server.git.uri=https://github.com/quizhorniw/spring-cloud-configuration
 ```

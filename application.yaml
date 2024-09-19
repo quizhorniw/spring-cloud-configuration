@@ -1,17 +1,9 @@
-services:
-  user:
-    gateway-uri: http://localhost:${api.port.gateway}
-    uri: http://localhost:${api.port.user-service}
-  order:
-    uri: http://localhost:${api.port.order-service}
-  product:
-    uri: http://localhost:${api.port.product-service}
-  notification:
-    email:
-      topic:
-        verification: "Confirm email"
-        order-created: "Order confirmation"
-      from: noreply@drevotiuk.com
+notifications:
+  email:
+    topic:
+      verification: "Confirm email"
+      order-created: "Order confirmation"
+    from: noreply@drevotiuk.com
 
 rabbitmq:
   exchange:
@@ -53,9 +45,3 @@ security:
 
 api:
   version: v2
-  port:
-    gateway: 9090
-    user-service: 9091
-    order-service: 9092
-    product-service: 9093
-    notification-service: 9094

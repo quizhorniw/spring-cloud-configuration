@@ -1,0 +1,61 @@
+services:
+  user:
+    gateway-uri: http://localhost:${api.port.gateway}
+    uri: http://localhost:${api.port.user-service}
+  order:
+    uri: http://localhost:${api.port.order-service}
+  product:
+    uri: http://localhost:${api.port.product-service}
+  notification:
+    email:
+      topic:
+        verification: "Confirm email"
+        order-created: "Order confirmation"
+      from: noreply@drevotiuk.com
+
+rabbitmq:
+  exchange:
+    notification-service: notification_service
+    user-service: user_service
+    product-service: product_service
+  queue:
+    email-verification: email_verification_queue
+    order-created: order_created_queue
+    user: user_queue
+    total-price: total_price_queue
+    fetch-qty: fetch_qty_queue
+    restore-qty: restore_qty_queue
+  routingkey:
+    email-verification: verify_email
+    order-created: order_created
+    user: user
+    total-price: total_price
+    fetch-qty: fetch_qty
+    restore-qty: restore_qty
+
+resources:
+  email:
+    verification: verification_email.html
+    order-created: order_created_email.html
+
+security:
+  confirmation-token:
+    expiration: 30 # in minutes
+  jwt:
+    secret-key:
+      algorithm: HmacSHA256
+    expiration: 86400000 # 1 day
+  password-encoder:
+    strength: 10
+  header:
+    id: X-User-ID
+    role: X-User-Role
+
+api:
+  version: v2
+  port:
+    gateway: 9090
+    user-service: 9091
+    order-service: 9092
+    product-service: 9093
+    notification-service: 9094
